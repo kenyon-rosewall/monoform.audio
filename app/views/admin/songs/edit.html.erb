@@ -1,0 +1,139 @@
+<div class="panel panel-info">
+	<div class="panel-heading">Info</div>
+	<div class="panel-body">
+		<form action="/admin/songs/<%= @song.id %>" method="post">
+			<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+			<input type="hidden" name="_method" value="PUT" />
+			<div class="form-group">
+				<label>Song Id</label>
+				<input type="text" name="song_id" class="form-control" readonly value="<%= @song.song_id %>" />
+			</div>
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text" name="name" id="name" class="form-control" value="<%= @song.name %>" />
+			</div>
+			<div class="form-group">
+				<label>Description</label>
+				<textarea name="description" id="description" class="form-control"><%= @song.description %></textarea>
+			</div>
+			<div class="form-group">
+				<label>Release Date</label>
+				<input type="text" name="release_date" id="release_date" class="form-control datepicker" value="<%= @song.release_date %>" />
+			</div>
+			<button type="submit" class="btn btn-default">Save</button>
+		</form>
+	</div>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">Recordings</div>
+	<div class="panel-body">
+		<form action="/admin/songs/<%= @song.id %>/add_recording" method="post" enctype="multipart/form-data">
+			<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+			<div class="form-group">
+				<input type="file" class="form-control" name="recording" id="recording" />
+			</div>
+			<button type="submit" class="btn btn-success">New recording</button>
+		</form>
+		<br />
+		<table class="table table-striped">
+			<% @song.recordings.each do |r| %>
+			<tr>
+				<td><%= r.recording_id %></td>
+				<td><%= r.name %></td>
+				<td><a href="<%= r.waveform_path %>" target="_blank">Waveform</a></td>
+				<td><a href="<%= r.watermarked_path %>" target="_blank">Watermark Listen</a></td>
+				<td><a href="/admin/recordings/<%= r.id %>/edit" class="btn btn-success">edit</a></td>
+				<td>
+					<form action="/admin/songs/<%= @song.id %>/remove_recording" method="post">
+						<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+						<input type="hidden" name="_method" value="DELETE" />
+						<input type="hidden" name="id" value="<%= r.id %>" />
+						<button type="submit" class="btn btn-danger">delete</button>
+					</form>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">Composers</div>
+	<div class="panel-body">
+		<table class="table table-striped">
+			<% @song.song_composers.each do |sc| %>
+			<tr>
+				<td><%= sc.composer.name %></td>
+				<td><%= sc.composer.pro %></td>
+				<td><%= sc.percentage %>%</td>
+				<td>
+					<form action="/admin/songs/<%= @song.id %>/remove_composer" method="post">
+						<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+						<input type="hidden" name="_method" value="DELETE" />
+						<input type="hidden" name="id" value="<%= sc.id %>" />
+						<button type="submit" class="btn btn-danger">delete</button>
+					</form>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+		<br />
+		<form action="/admin/songs/<%= @song.id %>/add_composer" method="post">
+			<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+			<div class="form-group">
+				<select name="composer_id" id="composer_id" class="form-control">
+					<option value="">Choose a composer</option>
+					<% @composers.each do |c| %>
+					<option value="<%= c.id %>"><%= c.name %></option>
+					<% end %>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Percentage</label>
+				<input type="text" name="percentage" id="percentage" class="form-control" />
+			</div>
+			<button type="submit" class="btn btn-default">Add composer</button>
+		</form>
+	</div>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">Publishers</div>
+	<div class="panel-body">
+		<table class="table table-striped">
+			<% @song.song_publishers.each do |sp| %>
+			<tr>
+				<td><%= sp.publisher.name %></td>
+				<td><%= sp.publisher.pro %></td>
+				<td><%= sp.percentage %>%</td>
+				<td>
+					<form action="/admin/songs/<%= @song.id %>/remove_publisher" method="post">
+						<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+						<input type="hidden" name="_method" value="DELETE" />
+						<input type="hidden" name="id" value="<%= sp.id %>" />
+						<button type="submit" class="btn btn-danger">delete</button>
+					</form>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+		<br />
+		<form action="/admin/songs/<%= @song.id %>/add_publisher" method="post">
+			<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+			<div class="form-group">
+				<select name="publisher_id" id="publisher_id" class="form-control">
+					<option value="">Choose a publisher</option>
+					<% @publishers.each do |p| %>
+					<option value="<%= p.id %>"><%= p.name %></option>
+					<% end %>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Percentage</label>
+				<input type="text" name="percentage" id="percentage" class="form-control" />
+			</div>
+			<button type="submit" class="btn btn-default">Add publisher</button>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,23 @@
+development: &default
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+
+stage:
+  adapter: mysql2
+  host: <%= ENV['DB_HOST'] %>
+  port: 3306
+  database: twin_musicom_dev
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
+  encoding: utf8
+  
+production:
+  adapter: mysql2
+  host: <%= ENV['DB_HOST'] %>
+  port: 3306
+  database: monoform
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
+  encoding: utf8

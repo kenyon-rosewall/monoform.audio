@@ -1,0 +1,32 @@
+<div class="col-player-filter">
+        
+ <div class="music-search">
+    <input type="text" class="search-box" id="query" placeholder="Search...">
+    <button type="submit" class="searchButton">
+      <i class="fa fa-search"></i>
+   </button>
+ </div>
+
+<h4>Filter By:</h4> 
+<div class="filter-block">Genre <i class="fa fa-angle-right" aria-hidden="true"></i></div>
+<ul class="filter-wrap-level-2">
+  <li class="close-filters">X Close Filters</li>
+  <% @genres.each do |g| %>
+	<li data-type="genre"><%= g.name %></li>
+  <% end %>
+</ul>
+<div class="filter-block">Mood <i class="fa fa-angle-right" aria-hidden="true"></i></div>
+<ul class="filter-wrap-level-2">
+  <li class="close-filters">X Close Filters</li>
+  <% @moods.each do |m| %>
+	<li data-type="mood"><%= m %></li>
+  <% end %>
+</ul>
+<div class="filter-block" id="recommended-filter">Recommended</div>
+
+<div class="filter-block" id="new-filter">New</div>
+
+<div class="filter-block close">X Close Filters</div>
+<div class="filter-bank">
+</div>
+</div><!-- .col-player-filter -->

@@ -1,0 +1,22 @@
+<%= render 'alert' %>
+
+  <div class="player-container">
+    <div id="playlist_title">
+      <h3><%= @playlist.name %></h3>
+      <%= raw @playlist.get_image_tag %>
+      <div id="playlist_description"><%= @playlist.description %></div>
+      <div style="clear:both;"></div>
+      <input type="hidden" id="playlist_id" name="playlist_id" value="<%= @playlist.id %>" />
+    </div>
+    <div class="row">
+      <%= render 'search' %>
+      <div class="col-player">
+        <div class="mobile-filters">Filters</div>
+        <h2><i class="fa fa-headphones fa-headphones-home inline-block" aria-hidden="true"></i>Available Tracks</h2>
+        <div class="playlist-block-a"></div>
+      </div><!-- .col -->
+    </div><!-- .row -->
+    <div class="v-space v-space-9"></div>
+  </div><!-- .player-list-container -->
+
+<%= render 'transport' %>

@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col-sm-9">
+		<h3>Artists</h3>
+	</div>
+	<div class="col-sm-3">
+		<a href="/admin/artists/new" class="btn btn-success">Add Artist</a>
+	</div>
+</div>
+
+<table class="table table-striped">
+	<% @artists.each do |a| %>
+	<% a.active ? active_method = 'inactivate' : active_method = 'activate' %>
+	<tr>
+		<td><%= a.name %></td>
+		<td><a href="/admin/artists/<%= a.id %>/edit" class="btn btn-success">edit</a></td>
+		<td>
+			<form action="/admin/artists/<%= a.id %>/<%= active_method %>" method="post">
+				<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+				<input type="hidden" name="_method" value="PUT" />
+				<button type="submit" class="btn btn-info"><%= active_method %></button>
+			</form>
+		</td>
+		<td>
+			<form action="/admin/artists/<%= a.id %>" method="post">
+				<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+				<input type="hidden" name="_method" value="DELETE" />
+				<button type="submit" class="btn btn-danger">delete</button>
+			</form>
+		</td>
+	</tr>
+	<% end %>
+</table>

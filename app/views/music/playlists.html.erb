@@ -1,0 +1,13 @@
+<div class="container" style="background-color: white;">
+	<h1>Playlists</h1>
+	<div id="playlist-list">
+		<% @playlists.each do |p| %>
+		<div class="playlist-item">
+			<a href="/music/view_playlist/<%= p.id %>/<%= p.slug %>">
+				<%= raw p.get_image_tag %>
+			</a>
+			<span><%= p.name %></span>
+		</div>
+		<% end %>
+	</div>
+</div>

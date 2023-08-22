@@ -1,0 +1,49 @@
+<div class="container">
+	<div class="parallax parallax-2">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-1-1 text-center">
+          <h1>Contact Us</h1>
+        </div>
+      </div><!-- .row -->
+
+    </div><!-- .container -->
+  
+  </div><!-- .parallax --> 
+
+	<div class="v-space v-space-9"></div>
+	<div class="col col-3-5">
+		<p>For assistance with purchasing a license, fill out the contact form below!  Please provide as much information about your project as you can so we can better assist you.  Let us know which track/tracks you are interested in licensing, the type of project you are working on and where it will be displayed when finished(web video, television commercial, etc.), your time frame, your music budget, your favorite color, or anything else that we may need to know! </p>
+	</div>
+	
+	<div class="col col-2-5">
+		<div class="contact-form-wrap">
+			<form action="/support/contact" method="post">
+				<input type="hidden" name="authenticity_token" class="authenticity_token" value="" />
+					<div>
+						<input type="text" name="name" placeholder="Name" tabindex="1" />
+					</div>
+					<div>
+						<input type="text" name="email" placeholder="Email" />
+					</div>
+					<div>
+						<% if @song_title.to_s != '' %>
+						<textarea name="message" rows="8" placeholder="Message">I'm interested in licensing "<%= @song_title %>" CatId: <%= @recording_id %>.</textarea>
+						<% else %>
+						<textarea name="message" rows="8" placeholder="Message"></textarea>
+						<% end %>
+					</div>
+					<div class="g-recaptcha" data-sitekey="<%= ENV['RECAPTCHA_KEY'] %>"></div>
+					<% if flash[:error] %>
+					<div class="error"><%= raw flash[:error] %></div>
+					<% end %>
+					<br />
+					<input type="submit" value="Send">
+				</div>
+			</form>
+		</div>
+	</div>
+		<div class="v-space v-space-9"></div>
+</div>

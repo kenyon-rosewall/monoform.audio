@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twin Musicom Backend</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= stylesheet_link_tag "application", "admin", :media => "all" %>
+  <%= javascript_include_tag "application", "admin" %>
+  <%= stylesheet_link_tag "application", params[:controller], :media => "all" %>
+  <%= javascript_include_tag "application", params[:controller] %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="row">
+    <!-- uncomment code for absolute positioning tweek see top comment in css -->
+    <!-- <div class="absolute-wrapper"> </div> -->
+    <!-- Menu -->
+    <div class="side-menu">
+    
+    <nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <div class="brand-wrapper">
+            <!-- Hamburger -->
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Brand -->
+            <div class="brand-name-wrapper">
+                <a class="navbar-brand" href="/admin">
+                    Monoform Backend
+                </a>
+            </div>
+
+            <!-- Search -->
+            <!-- <a data-toggle="collapse" href="#search" class="btn btn-default" id="search-trigger">
+                <span class="glyphicon glyphicon-search"></span>
+            </a> -->
+
+            <!-- Search body -->
+            <!-- <div id="search" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <form class="navbar-form" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default "><span class="glyphicon glyphicon-ok"></span></button>
+                    </form>
+                </div>
+            </div> -->
+        </div>
+
+    </div>
+
+    <!-- Main Menu -->
+    <div class="side-menu-container">
+        <ul class="nav navbar-nav">
+        	<li class="<%= 'active' if @p == 'dashboard' %>"><a href="/admin"><span class="fa fa-tachometer"></span> Dashboard</a></li>
+            <li class="panel panel-default" id="dropdown">
+                <a 
+                <% if ['songs','recordings','playlists'].include? @p %>
+                    aria-expanded="true"
+                <% else %>
+                    data-toggle="collapse"
+                <% end %> href="#music">
+                    <span class="fa fa-music"></span> Music <span class="caret"></span>
+                </a>
+                <div id="music" 
+                <% if ['songs','recordings','playlists'].include? @p %>
+                    aria-expanded="true"
+                <% else %>
+                    class="panel-collapse collapse"
+                <% end %>>
+                    <div class="panel-body">
+                        <ul class="nav navbar-nav">
+                            <li class="<%= 'active' if @p == 'songs' %>"><a href="/admin/songs">Songs</a></li>
+                            <li class="<%= 'active' if @p == 'recordings' %>"><a href="/admin/recordings">Recordings</a></li>
+                            <li class="<%= 'active' if @p == 'playlists' %>"><a href="/admin/playlists">Playlists</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="panel panel-default" id="dropdown">
+                <a 
+                <% if ['artists','composers','publishers'].include? @p %>
+                    aria-expanded="true"
+                <% else %>
+                    data-toggle="collapse"
+                <% end %> href="#creators">
+                    <span class="fa fa-user-circle-o"></span> Creators <span class="caret"></span>
+                </a>
+                <div id="creators" 
+                <% if ['artists','composers','publishers'].include? @p %>
+                    aria-expanded="true"
+                <% else %>
+                    class="panel-collapse collapse"
+                <% end %>>
+                    <div class="panel-body">
+                        <ul class="nav navbar-nav">
+                            <li class="<%= 'active' if @p == 'artists' %>"><a href="/admin/artists">Artists</a></li>
+                            <li class="<%= 'active' if @p == 'composers' %>"><a href="/admin/composers">Composers</a></li>
+                            <li class="<%= 'active' if @p == 'publishers' %>"><a href="/admin/publishers">Publishers</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="panel panel-default" id="dropdown">
+                <a 
+                <% if ['libraries','licenses','genres'].include? @p %>
+                    aria-expanded="true"
+                <% else %>
+                    data-toggle="collapse"
+                <% end %> href="#metadata">
+                    <span class="fa fa-tag"></span> Metadata <span class="caret"></span>
+                </a>
+                <div id="metadata" 
+                <% if ['libraries','licenses','genres'].include? @p %>
+                    aria-expanded="true"
+                <% else %>
+                    class="panel-collapse collapse"
+                <% end %>>
+                    <div class="panel-body">
+                        <ul class="nav navbar-nav">
+                            <li class="<%= 'active' if @p == 'libraries' %>"><a href="/admin/libraries">Libraries</a></li>
+                            <li class="<%= 'active' if @p == 'licenses' %>"><a href="/admin/licenses">Licenses</a></li>
+                            <li class="<%= 'active' if @p == 'genres' %>"><a href="/admin/genres">Genres</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+                
+            <li class="<%= 'active' if @p == 'quotes' %>"><a href="/admin/quotes"><span class="fa fa-quote-left"></span> Quotes</a></li>
+            <li class="<%= 'active' if @p == 'requests' %>"><a href="/admin/requests"><span class="fa fa-credit-card"></span> License Requests</a></li>
+            <li class="<%= 'active' if @p == 'submissions' %>"><a href="/admin/submissions"><span class="fa fa-music"></span> Music Submissions</a></li>
+            <!-- <li class="<%= 'active' if @p == 'users' %>"><a href="/admin/users"><span class="fa fa-users"></span> Users</a></li> -->
+            <li><a href="/"><span class="fa fa-intersex"></span> Front Page</a></li>
+
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>
+    
+    </div>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="side-body">
+           <%= yield %>         
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<table class="table table-striped">
+	<tr>
+		<td>Name</td>
+		<td><%= @request.name %></td>
+	</tr>
+	<tr>
+		<td>Organization</td>
+		<td><%= @request.organization %></td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td><%= @request.email %></td>
+	</tr>
+	<tr>
+		<td>Phone</td>
+		<td><%= @request.phone %></td>
+	</tr>
+	<tr>
+		<td>Project</td>
+		<td><%= @request.project_name %></td>
+	</tr>
+	<tr>
+		<td>Project Description</td>
+		<td><%= @request.project_description %></td>
+	</tr>
+	<tr>
+		<td>Song Use</td>
+		<td><%= @request.song_use %></td>
+	</tr>
+	<tr>
+		<td>Budget</td>
+		<td><%= @request.budget %></td>
+	</tr>
+	<tr>
+		<td>Timeline</td>
+		<td><%= @request.timeline %></td>
+	</tr>
+	<tr>
+		<td>Alterations</td>
+		<td><%= @request.alterations %></td>
+	</tr>
+	<tr>
+		<td>Notes</td>
+		<td><%= @request.notes %></td>
+	</tr>
+</table>
+
+<table class="table table-striped">
+	<tr>
+		<th>Songs</th>
+	</tr>
+	<% @request.recordings.each do |r| %>
+	<tr>
+		<td><a href="/admin/recordings/<%= r.id %>/edit"><%= r.recording_id %></a></td>
+		<td><%= r.full_title %></td>
+		<td><button type="button" class="btn btn-success">Download Wav</button></td>
+	</tr>
+	<% end %>
+</table>

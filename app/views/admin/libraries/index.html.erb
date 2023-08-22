@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col-sm-9">
+		<h3>Libraries</h3>
+	</div>
+	<div class="col-sm-3">
+		<a href="/admin/libraries/new" class="btn btn-success">Add Library</a>
+	</div>
+</div>
+
+<table class="table table-striped">
+	<% @libraries.each do |l| %>
+	<% l.active ? active_method = 'inactivate' : active_method = 'activate' %>
+	<tr>
+		<td><%= l.name %></td>
+		<td><a href="/admin/libraries/<%= l.id %>/edit" class="btn btn-success">edit</a></td>
+		<td>
+			<form action="/admin/libraries/<%= l.id %>/<%= active_method %>" method="post">
+				<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+				<input type="hidden" name="_method" value="PUT" />
+				<button type="submit" class="btn btn-info"><%= active_method %></button>
+			</form>
+		</td>
+		<td>
+			<form action="/admin/libraries/<%= l.id %>" method="post">
+				<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+				<input type="hidden" name="_method" value="DELETE" />
+				<button type="submit" class="btn btn-danger">delete</button>
+			</form>
+		</td>
+	</tr>
+	<% end %>
+</table>

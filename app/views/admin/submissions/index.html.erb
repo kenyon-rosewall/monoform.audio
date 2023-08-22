@@ -1,0 +1,21 @@
+<h2>Submissions</h2>
+<table class="table table-striped">
+	<% @submissions.each do |s| %>
+	<tr>
+		<td><%= s.name %></td>
+		<td><%= s.artist %></td>
+		<td><%= s.submission_id %></td>
+		<td><%= s.created_at.strftime("%m/%d/%Y") %></td>
+		<td>
+			<a href="/admin/submissions/<%= s.id %>" class="btn btn-success">view</a>
+		</td>
+		<td>
+			<form action="/admin/submissions/<%= s.id %>" method="post">
+				<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+				<input type="hidden" name="_method" value="DELETE" />
+				<button type="submit" class="btn btn-danger">delete</button>
+			</form>
+		</td>
+	</tr>
+	<% end %>
+</table>

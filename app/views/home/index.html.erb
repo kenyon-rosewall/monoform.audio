@@ -1,0 +1,46 @@
+<div class="hero-block group">
+    <h1>Music Licensed by Musicians</h1>
+    <form class="form-wrapper">
+      <a href="/music" id="submit">Browse Our Music</a>
+    </form>
+  </div><!-- .hero-block -->
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col col-3-5">
+        <h2>Hand picked music with Monoform Audio</h2>
+        <p><b>Monoform</b> provides <i>Synchronization Licenses</i> for Film, Television, Radio and Commercials, as well as <i>Digital Licenses</i> for online or video game content. We care about your project and want to deliver the highest customer service in our industry. All of our music is pre-cleared, so licensing from our library is incredibly easy.</p>
+        <p>We are happy to help with <b>musical inspiration</b> or guidance for your project, and can custom tailor new our existing tracks to help create the perfect atmosphere for your project. And, when you purchase a license from us, you can be sure that the artist is fairly compensated for their work.</p>
+      </div><!-- .col -->
+      <div class="col col-2-5">
+        <div class="quote-block">
+          <div class="quote"><span class="quote-mark">&ldquo;</span><%= @quote.content %></div>
+          <div class="author">- <%= @quote.author %></div>
+        </div>
+      </div><!-- .col -->
+    </div><!-- .row -->
+
+    <div class="v-space v-space-10"></div>
+
+  </div><!-- .container -->
+  
+  <div class="parallax parallax-1">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-1-1 text-center">
+          <h2>Some of our clients</h2>
+          <img src="<%= image_path('bb-logo') %>" alt="Best Buy logo" class="corp-logo" />
+          <img src="<%= image_path('cr-logo') %>" alt="Crocs logo" class="corp-logo" />
+          <img src="<%= image_path('ge-logo') %>" alt="GE logo" class="corp-logo" />
+          <img src="<%= image_path('yt-logo') %>" alt="YouTube logo" class="corp-logo" />
+        </div>
+      </div><!-- .row -->
+
+    </div><!-- .container -->
+  
+  </div><!-- .parallax --> 
+
+  

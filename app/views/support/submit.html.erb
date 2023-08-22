@@ -1,0 +1,80 @@
+	<div class="container">
+
+		<div class="parallax parallax-submit">
+
+		    <div class="container">
+
+		      <div class="row">
+		        <div class="col-1-1 text-center">
+		          <h1>Submit Your Music</h1>
+		        </div>
+		      </div><!-- .row -->
+
+		    </div><!-- .container -->
+		  
+		  </div><!-- .parallax --> 
+
+		  <div class="v-space v-space-9"></div>
+
+		  <p>If you’d like to become part of our licensing library, please fill out the form below and attach some samples in MP3 format.  All work submitted to <b>Monoform</b> must be written and recorded by you, and must not contain samples or covers of other people’s work.  You must confirm that the material you submit is 100% yours, or we can not accept the submission.</p>
+			<p>Please allow up to <b>15</b> business days for us to get back to you about submissions.  After your submission has been reviewed, we will reach out and let you know what the next steps are.</p>
+
+		<div class="contact-form-wrap">
+			
+			<form action="/support/submit" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="authenticity_token" class="authenticity_token" value="" />
+				<div>
+					<input type="text" name="name" placeholder="Name" />
+				</div>
+				<div>
+					<input type="text" name="email" placeholder="Email" />
+				</div>
+				<div>
+					<textarea name="message" rows="8" placeholder="Message"></textarea>
+				</div>
+				<div>
+					<input type="text" name="artist" placeholder="Artist Name" />
+				</div>
+				<div>
+					<input type="text" name="sounds_like" placeholder="My music sounds like..." />
+				</div>
+				<div>
+					<input type="text" name="how_did_you_hear" placeholder="How did you hear about us?" />
+				</div>
+				<div style="width: auto;">
+					<label for="song0">Song #1:</label>
+					<input type="file" name="song0" class="form-control" />
+				</div>
+				<div>
+					<label for="song1">Song #2:</label>
+					<input type="file" name="song1" class="form-control" />
+				</div>
+				<div style="width: auto;">
+					<label for="song2">Song #3:</label>
+					<input type="file" name="song2" class="form-control" />
+				</div>
+				<div>
+					<label for="song3">Song #4:</label>
+					<input type="file" name="song3" class="form-control" />
+				</div>
+				<div>
+					<br />
+					<input type="checkbox" name="verify_ownership" /> I verify that I own the music I am submitting
+				</div>
+				<br />
+				<div class="g-recaptcha" data-sitekey="<%= ENV['RECAPTCHA_KEY'] %>"></div>
+				<% if flash[:error] %>
+				<div class="error"><%= raw flash[:error] %></div>
+				<% end %>
+				<br />
+				<input type="submit" value="Submit" />
+			</form>
+		</div>
+			<div class="v-space v-space-9"></div>
+	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		//$('.main').addClass('player-main');
+	});
+	</script>

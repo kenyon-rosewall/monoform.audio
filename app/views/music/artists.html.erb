@@ -1,0 +1,13 @@
+<div class="container" style="background-color: white;">
+	<h1>Artists</h1>
+	<div id="artist-list">
+	<% @artists.each do |a| %>
+		<div class="artist-item">
+			<a href="/music/view_artist/<%= a.id %>/<%= a.slug %>">
+				<%= raw a.get_image_tag %>
+			</a>
+			<span><%= a.name %></span>
+		</div>
+	<% end %>	
+	</div>
+</div>

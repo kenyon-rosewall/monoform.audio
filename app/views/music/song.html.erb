@@ -1,0 +1,144 @@
+<div class="container white">
+	<div id="artist_title">
+      <h3><%= @recording.full_title %></h3> by <h3 style="padding-left: 0px;text-decoration:underline;"><a style="color: #FF9500;" href="/music/view_artist/<%= @recording.primary_artist.id %>/<%= @recording.primary_artist.slug %>"><%= @recording.primary_artist.name %></a></h3>
+      		<a href="/music/download/<%= @recording.recording_id %>" class="btn btn-success down_button" style="float: right;">
+      			<i class="fa fa-download" aria-hidden="true"></i> Download Track
+      		</a>
+
+      <% if @recording.image %>
+      	<%= raw @recording.get_image_tag %>
+      <% else %>
+      	<%= raw @recording.primary_artist.get_image_tag %>
+      <% end %>
+      <div id="artist_description"><%= @recording.song.description %></div>
+      <div style="clear:both;"></div>
+    </div>
+
+    <div class="parallax parallax-2 parallax-song-info">
+      <div class="row">
+        <div class="col col-1-3 text-center">
+          <h2><%= @recording.length %></h2>
+        </div>
+        <div class="col col-1-3 text-center">
+          <h2><%= @recording.bpm.to_i %> BPM</h2>
+        </div>
+        <div class="col col-1-3 text-center text-vert-center">
+          <h2>Released <br /><%= @recording.song.release_date.strftime("%b %e %Y") %></h2>
+        </div>
+      </div><!-- .row -->
+  	</div><!-- .parallax --> 
+
+    <div class="v-space v-space-9"></div>
+
+    <div class="row">
+      <div class="col col-1-2 content-block">
+      	<h2 class="info_caption song-border">Genres</h2>
+        <div style="text-align:center;">
+        	<% @recording.genres.each do |g| %>
+        	<a href="#"><%= g.name %></a><br />
+        	<% end %>
+        </div>
+        <div class="v-space v-space-1"></div>
+      </div><!-- .col -->
+      <div class="col col-1-2 content-block">
+      	<h2 class="info_caption song-border">Tags</h2>
+      	<div style="text-align:center;">
+      		<ul class="tags_list">
+      		<% @recording.recording_tags.each do |t| %>
+      			<li><a href="#"><%= t.tag %></a></li>
+      		<% end %>
+      		</ul>
+      	</div>
+        
+        <div class="v-space v-space-1"></div>
+      </div><!-- .col -->    
+    </div><!-- .row -->
+
+    <div class="v-space v-space-9"></div>
+
+    <div class="row">
+      <div class="col col-1-3 content-block">
+      	<h2 class="info_caption song-border">Artists</h2>
+        <div style="text-align:center;">
+        	<% @recording.artists.each do |a| %>
+        	<a href="/music/view_artist/<%= a.id %>/<%= a.slug %>"><%= a.name %></a><br />
+        	<% end %>
+        </div>
+        <div class="v-space v-space-1"></div>
+      </div><!-- .col -->
+      <div class="col col-1-3 content-block">
+      	<h2 class="info_caption song-border">Composers</h2>
+      	<div style="text-align:center;">
+      		<% @recording.song_composers.each do |c| %>
+      		<%= c.composer.name %> (<%= c.percentage %>%)<br />
+      		<% end %>
+      	</div>
+        
+        <div class="v-space v-space-1"></div>
+      </div><!-- .col -->   
+
+      <div class="col col-1-3 content-block">
+      	<h2 class="info_caption song-border">Publishers</h2>
+      	<div style="text-align:center;">
+      		<% @recording.song_publishers.each do |p| %>
+      		<%= p.publisher.name %> (<%= p.percentage %>%)<br />
+      		<% end %>
+      	</div>
+        
+        <div class="v-space v-space-1"></div>
+      </div><!-- .col -->      
+    </div><!-- .row -->
+
+    <div class="v-space v-space-9"></div>
+	<br /><br /><br />
+	<div id="comments">
+		<form action="/music/recording/<%= @recording.id %>/post_comment" method="post">
+			<input type="hidden" name="authenticity_token" class="authenticity_token" value="" />
+			<div class="form-group">
+				<input type="text" name="name" id="name" placeholder="Name..." class="form-control" />
+			</div>
+			<div class="form-group">
+				<textarea name="comment" id="comment" class="form-control" placeholder="Comment..."></textarea>
+			</div>
+			<% if flash[:error] %>
+			<div class="error"><%= raw flash[:error] %></div>
+			<% end %>
+			<div class="form-group">
+				<div class="g-recaptcha" data-sitekey="<%= ENV['RECAPTCHA_KEY'] %>" style="float: left;"></div>
+				<input type="submit" value="Submit" style="float:right;" />
+			</div>
+		</form>
+
+		<% @recording.comments.each do |c| %>
+		<div class="recording-comments">
+			<span class="name"><%= c.name %></span>
+			<span class="date"><%= time_ago_in_words(c.created_at) %> ago</span>
+			<div class="comment"><%= c.comment %></div>
+		</div>
+		<% end %>
+	</div>
+	<br /><br><br><br><br>
+</div>
+
+<%= render "transport" %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.ajax({
+			url: "/api/recording/<%= @recording.recording_id %>",
+			success: function(data) {
+				player.src = data.src;
+				$('.track-info .song').text(data.full_title);
+				if (data.artist != undefined) {
+					$('.track-info .artist a').text(data.artist);
+					$('.track-info .artist a').prop('href', '/music/view_artist/' + data.artist_id + '/' + data.artist_slug)
+				} else {
+					$('.track-info .artist a').text('Unknown');
+					$('.track-info .artist a').prop('href', '');
+				}
+				$('#waveform').attr('src',data.waveform);
+				$('#download').attr('href','/music/download/' + data.id);
+			}
+		});
+	});
+</script>

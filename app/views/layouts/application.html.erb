@@ -1,0 +1,121 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>monoform audio</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= stylesheet_link_tag params[:controller], :media => "all" %>
+  <%= csrf_meta_tags %>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Work+Sans:300,400,600,700,900" rel="stylesheet">
+
+  <!-- Font Awesome Script -->
+  <script src="https://use.fontawesome.com/9e7bfa77e2.js"></script>
+
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag params[:controller] %>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  
+</head>
+<body>
+  <header class="group">
+    <div class="container">
+      <div class="logo">
+        <a href="/">
+          <img src="<%= image_path 'monoform-logo-transparent.png' %>" alt="monoform">
+        </a>
+      </div><!-- .logo -->
+
+      <div id="mobNavLink"><i class="fa fa-bars" aria-hidden="true"></i></div>
+
+      <nav class="top-nav">
+        <ul>
+          <li><a href="/music">Music</a></li>
+          <li><a href="/music/playlists">Playlists</a></li>
+          <li><a href="/support/submit">Submit</a></li>
+          <li><a href="/support/contact_us">Contact</a></li>
+          <li><a id="cart" href="/cart" class="" data-badge=""><i class="fa fa-shopping-cart fa-2x"></i></a></li>
+        </ul>          
+      </nav>
+    </div>
+  </header>
+
+	<div class="main">
+  <%= yield %>
+	</div>
+
+	<footer>
+	  <div class="container">
+	    <div class="row">
+
+	      <div class="col col-1-6">
+	        <h3>Info</h3>
+	        <ul>
+				<li><a href="/info/about_us">About us</a></li>
+        <li><a href="/info/licensing">Licensing</a></li>
+				<li><a href="/info/privacy_policy">Privacy Policy</a></li>
+				<li><a href="/info/site_map">Site Map</a></li>
+	        </ul>
+	      </div><!-- .col -->
+
+	      <div class="col col-1-6">
+	        <h3>Support</h3>
+	        <ul>
+    				<li><a href="/support/submit">Submit Your Music</a></li>
+    				<li><a href="/support/contact_us">Contact Us</a></li>
+	        </ul>
+	      </div><!-- .col -->
+
+        <div class="col col-1-6" style="min-width: 250px;">
+          <h3>Music</h3>
+          <ul>
+            <li><a href="/music/artists">Artists</a></li>
+            <li><a href="/music/playlists">Playlists</a></li>
+          </ul>
+        </div><!-- .col -->
+
+	      <div class="col col-1-2">
+
+	        <h3>Connect With Us</h3>
+	        <a href="https://www.facebook.com/monoformaudio/"><i class="fa social-icon btn btn-browse btn-footer-browse fa-facebook" aria-hidden="true"></i></a>
+	        <a href="https://twitter.com/twinmusicom"><i class="fa social-icon btn btn-browse btn-footer-browse fa-twitter" aria-hidden="true"></i></a>
+	        <a href="https://www.youtube.com/channel/UC636YLvNOD6r02q2ePw0XZw"><i class="fa social-icon btn btn-browse btn-footer-browse fa-youtube" aria-hidden="true"></i></a>
+	        <a href="https://www.linkedin.com/company/11339775/"><i class="fa social-icon btn btn-browse btn-footer-browse fa-linkedin" aria-hidden="true"></i></a>
+	        
+	      </div><!-- .col -->
+
+	    </div><!-- .row -->
+	  </div><!-- .container -->
+	</footer>
+
+	<div class="footer-base">
+      <div class="container">
+        <div class="row">
+          <div class="col col-1-1">
+            Monoform &copy; 2014-<%= Date.today.strftime("%Y") %>. All Rights Reserved.
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117696157-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117696157-1');
+</script>
+
+</body>
+</html>

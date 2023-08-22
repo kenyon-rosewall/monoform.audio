@@ -1,0 +1,30 @@
+<h3>Genres</h3>
+<form action="/admin/genres" method="post">
+	<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+	<div class="form-group">
+		<input type="text" class="form-control" name="name" id="name" />
+	</div>
+	<button type="submit" class="btn btn-success">Add Genre</button>
+</form>
+<br />
+<table class="table">
+	<% @genres.each do |g| %>
+	<tr>
+		<td><%= g.name %></td>
+		<td><a href="/admin/genres/<%= g.id %>/edit" class="btn btn-success">edit</a></td>
+		<td>
+			<form action="/admin/genres/<%= g.id %>" method="post">
+				<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+				<input type="hidden" name="_method" value="DELETE" />
+				<button type="submit" class="btn btn-danger">delete</button>
+			</form>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#name").focus();
+	});
+</script>

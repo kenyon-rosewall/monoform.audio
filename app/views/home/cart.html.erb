@@ -1,0 +1,77 @@
+<div class="container">
+	<div class="playlist-block-a">
+		<br>
+		<h1>Song Cart</h1>
+		<hr>
+	</div>
+	<div class="v-space v-space-9"></div>
+	<p class="desc">Since we like to work with all different project budgets, we do not put a price on our songs. There are many factors that help us in determining the correct price for the license. Please fill out the form below to tell us a little bit about your project. We will respond to you within the next 5 business days with a quote.</p>
+
+	<div class="contact-form-wrap">
+			
+		<form action="/support/submit_license_request" method="post">
+			<input type="hidden" name="authenticity_token" class="authenticity_token" value="" />
+			<input type="hidden" name="songs_for_request" id="songs_for_request" value="" />
+			<div>
+				<label for="name">Name</label>
+				<input type="text" name="name" id="name" />
+			</div>
+			<div>
+				<label for="organization">Organization</label>
+				<input type="text" name="organization" id="organization" />
+			</div>
+			<div>
+				<label for="email">Email</label>
+				<input type="text" name="email" id="email" />
+			</div>
+			<div>
+				<label for="phone">Phone</label>
+				<input type="text" name="phone" id="phone" />
+			</div>
+			<div>
+				<label for="project_name">Project Name</label>
+				<p class="desc">If you don't have a specific project, you can leave the input fields blank.</p>
+				<input type="text" name="project_name" id="project_name" />
+			</div>
+			<div>
+				<label for="project_description">Project Description</label>
+				<textarea name="project_description" id="project_description" rows="8"></textarea>
+			</div>
+			<div>
+				<label for="song_use">Describe how you will use the song</label>
+				<p class="desc">Be as detailed as you can about how you plan to use the song(s) that you would like to license. If they appearing on video, describe the scene. If it will be played in public, describe how people will hear it or interact with it.</p>
+				<textarea name="song_use" id="song_use" rows="8"></textarea>
+			</div>
+			<div>
+				<label for="budget">Describe the budget</label>
+				<p class="desc">Let us know what kind of budget you are working with.</p>
+				<textarea name="budget" id="budget" rows="8"></textarea>
+			</div>
+			<div>
+				<label for="timeline">Your timeline</label>
+				<p class="desc">If you have a deadline or time frame for the project you are working, let us know.</p>
+				<textarea name="timeline" id="timeline" rows="8"></textarea>
+			</div>
+			<div>
+				<label for="alterations">Do you need any changes?</label>
+				<p class="desc">Let us know if you need anything altered in the song or if you need stems.</p>
+				<textarea name="alterations" id="alterations" rows="8"></textarea>
+			</div>
+			<div>
+				<label for="notes">Comments</label>
+				<p class="desc">Any other comments or notes that you would like to let us know.</p>
+				<textarea name="notes" id="notes" rows="8"></textarea>
+			</div>
+			<br />
+			<div class="g-recaptcha" data-sitekey="<%= ENV['RECAPTCHA_KEY'] %>"></div>
+			<% if flash[:error] %>
+			<div class="error"><%= raw flash[:error] %></div>
+			<% end %>
+			<br />
+			<input type="submit" value="Submit" />
+		</form>
+
+		</div>
+	<div class="v-space v-space-9"></div>
+	<div class="v-space v-space-9"></div>
+</div>

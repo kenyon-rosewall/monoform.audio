@@ -1,0 +1,24 @@
+<%= render 'alert' %>
+
+  <div class="player-container">
+    <div class="row">
+      <%= render 'search' %>
+      <div class="col-player">
+        <div class="mobile-filters">Filters</div>
+        <h2><i class="fa fa-headphones fa-headphones-home inline-block" aria-hidden="true"></i>Available Tracks</h2>
+        <div class="playlist-block-a"></div>
+        <div class="v-space v-space-12"></div>
+        <div class="v-space v-space-12"></div>
+        <div class="v-space v-space-12"></div>
+      </div><!-- .col -->
+    </div><!-- .row -->
+    <div class="v-space v-space-9"></div>
+  </div><!-- .player-list-container -->
+  <div class="high-filters">
+    <input type="hidden" id="library_id" value="<%= @library %>" />
+    <input type="hidden" id="playlist_id" value="<%= @playlist %>" />
+    <input type="hidden" id="artist_id" value="<%= @artist %>" />
+    <input type="hidden" id="composer" value="" />
+  </div>
+
+<%= render 'transport' %>

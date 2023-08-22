@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  song_id: MyString
+  name: MyString
+  description: MyText
+  release_date: 2017-04-30
+
+two:
+  song_id: MyString
+  name: MyString
+  description: MyText
+  release_date: 2017-04-30

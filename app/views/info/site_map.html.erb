@@ -1,0 +1,48 @@
+<div class="container group">
+
+	<div class="row">
+      <div class="col col-1-3 content-block">
+        <h2>Music</h2>
+        <ul>
+        	<li><a href="/music">Music</a></li>
+        	<li><a href="/music/artists">Artists</a></li>
+        	<li><a href="/music/playlists">Playlists</a></li>
+        </ul>
+      </div><!-- .col -->
+      <div class="col col-1-3 content-block">
+        <h2>Info</h2>
+       	<ul>
+       		<li><a href="/info/about_us">About Us</a></li>
+       		<li><a href="/info/licensing">Licensing</a></li>
+       		<li><a href="/info/privacy_policy">Privacy Policy</a></li>
+       	</ul>
+      </div><!-- .col -->
+      <div class="col col-1-3 content-block">
+        <h2>Support</h2>
+        <ul>
+        	<li><a href="/support/contact_us">Contact Us</a></li>
+        	<li><a href="/support/submit">Submit Your Music</a></li>
+        </ul>
+      </div><!-- .col -->        
+    </div><!-- .row -->
+
+    <div class="v-space v-space-9"></div>
+</div>
+<div class="container">
+    <div class="row">
+    	<h2>Blog Posts</h2>
+    	<ul>
+    		<li><a href="">Put stuff about licensing here</a></li>
+    	</ul>
+    </div>
+<div class="v-space v-space-9"></div>
+ <div class="v-space v-space-9"></div>
+    <div class="row">
+    	<h2>All our songs</h2>
+    	<ul class="song-list inline-b">
+    		<% @recordings.each do |r| %>
+			<li class="inline-b-item"><a href="/music/song/<%= r.id %>/<%= r.slug %>"><%= r.full_title %></a></li>
+    		<% end %>
+    	</ul>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<h3>Recordings</h3>
+<br />
+<table class="table table-striped">
+	<% @recordings.each do |r| %>
+	<tr>
+		<td><%= r.recording_id %></td>
+		<td><%= r.full_title %></td>
+		<td><%= r.bpm %></td>
+		<td><%= r.length %></td>
+		<td><% if r.recommended %><span class="fa fa-check"></span><% end %></td>
+		<td><a href="/admin/recordings/<%= r.id %>/edit" class="btn btn-success">edit</a></td>
+		<td>
+			<form action="/admin/recordings/<%= r.id %>" method="post">
+				<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+				<input type="hidden" name="_method" value="DELETE" />
+				<button type="submit" class="btn btn-danger">delete</button>
+			</form>
+		</td>
+	</tr>
+	<% end %>
+</table>

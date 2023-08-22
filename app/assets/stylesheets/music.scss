@@ -1,0 +1,180 @@
+.time {
+	font-family:Courier;
+}
+
+.search-box:focus {
+	outline: none;
+}
+
+#download {
+	color: white;
+}
+
+#waveform {
+	background-color: white;
+}
+
+.playlist-item {
+	display: inline-block;
+	margin: 50px;
+}
+
+.playlist-item img {
+	height: 150px;
+	width: auto;
+}
+
+.playlist-item span {
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+
+.artist-item {
+	display: inline-block;
+	margin: 50px;
+}
+
+.artist-item img {
+	height: 150px;
+	width: auto;
+}
+
+.artist-item span {
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+
+#artist_title, #playlist_title {
+	margin: 5px;
+	padding: 10px;
+}
+
+#artist_title h3, #playlist_title h3 {
+	padding-left: 20px;
+	display: inline;
+}
+
+#artist_title img, #playlist_title img {
+	float: left;
+	height: auto;
+	width: 230px;
+	border:1px solid #021a40;
+}
+
+#artist_description, #playlist_description {
+	padding-top: 10px;
+	padding-left: 250px;
+	text-size: smaller;
+	font-style: italic;
+	display: block;
+}
+
+#comments {
+	width: 500px;
+	margin: 50px;
+}
+
+
+/* alert box */
+
+.alert {
+	background: #eee;
+	padding: 10px;
+	position: absolute;
+	font-weight: 400;
+	z-index: 100000;
+	margin: 0 auto;
+	width: 100%;
+	text-align: center;
+}
+
+.close_btn {
+	color: #000;
+	padding: 15px 0px 5px 10px;
+	display: block;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.img_container {
+	position: relative;
+    text-align: center;
+    color: white;
+    font-size: large;
+}
+
+.text_overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.info_caption {
+	text-align:center;
+	width: 100%;
+	font-size: 1.5em;
+}
+
+ul.tags_list {
+	list-style-type: none;
+}
+
+.tags_list li {
+	display: inline;
+	padding: 5px;
+	margin: 5px;
+}
+
+.down_button {
+	background-color:#FF9500;
+	color: white;
+	border: 1px solid black;
+	border-radius:15px;
+	padding: 20px;
+	margin: 8px;
+}
+
+.down_button:hover {
+	background-color:#CC6200;
+}
+
+
+.song-border {
+	border: 2px solid #ccc;
+	border-radius: 16px;
+	padding: 8px;
+}
+.song-border:hover {
+	background-color: #FF9500;
+}
+
+div.recording-comments {
+	padding-top: 25px;
+	clear:both;
+}
+
+span.name {
+	font-weight: bold;
+	padding-right: 50px;
+	padding-bottom: 25px;
+}
+
+span.date {
+	font-size: smaller;
+	font-style: italic;
+}
+
+div.comment {
+	padding-top: 15px;
+	padding-bottom: 50px;
+}
+
+
+

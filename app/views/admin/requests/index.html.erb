@@ -1,0 +1,11 @@
+<table class="table">
+	<% @requests.each do |r| %>
+	<tr>
+		<td><%= r.id %></td>
+		<td><%= r.name %></td>
+		<td><%= r.organization %></td>
+		<td><%= r.project_name %></td>
+		<td><a href="/admin/requests/<%= r.id %>/edit">edit</a></td>
+	</tr>
+	<% end %>
+</table>

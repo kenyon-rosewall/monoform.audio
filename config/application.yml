@@ -1,0 +1,21 @@
+development:
+  DB_HOST: ec2-52-21-79-36.compute-1.amazonaws.com
+  DB_USER: tmdevuser
+  DB_PASS: 3_co-0ds9%5BuloH
+  SECRET_KEY_BASE: a31a447c2f3f955cfa5a9b5240e8c31d8605797ce345eaef4b00193d2285e1bc18ea48a6d8d65e2bf822c01facc050effaf82b4a7850b8a1e3545cb24cc24803
+
+stage:
+  DB_HOST: ec2-52-21-79-36.compute-1.amazonaws.com
+  DB_USER: tmdevuser
+  DB_PASS: 3_co-0ds9%5BuloH
+  SECRET_KEY_BASE: a31a447c2f3f955cfa5a9b5240e8c31d8605797ce345eaef4b00193d2285e1bc18ea48a6d8d65e2bf822c01facc050effaf82b4a7850b8a1e3545cb24cc24803
+
+production:
+  DB_HOST: 52.21.79.36
+  DB_USER: monoform
+  DB_PASS: monoform123$%^
+  SECRET_KEY_BASE: 710631d7d7dcf87cd5445dca23744f9d2e77d9cbe28bda09b9b84bb4acd34831e67c81b7de3b586ef578b2d35cc735571506d7927b5836ba06f1e084ebb1ec56
+
+RECAPTCHA_KEY: 6Lf_6iIUAAAAALeoTOwDTfZL2GAucPT2GIhNfXck
+RECAPTCHA_SECRET: 6Lf_6iIUAAAAABuyVf1AhMqL1r5G5ArWZ0VoZnN1
+RECAPTCHA_URL: https://www.google.com/recaptcha/api/siteverify

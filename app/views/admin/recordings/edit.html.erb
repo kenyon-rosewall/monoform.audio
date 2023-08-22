@@ -1,0 +1,215 @@
+<div>
+	<%= @meta %>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">Info</div>
+	<div class="panel-body">
+		<form action="/admin/recordings/<%= @recording.id %>" method="post" enctype="multipart/form-data">
+			<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+			<input type="hidden" name="_method" value="PUT" />
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label>Recording Id</label>
+						<input type="text" name="recording_id" class="form-control" readonly value="<%= @recording.recording_id %>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label>Wav Id</label>
+						<input type="text" name="wav_name" class="form-control" readonly value="<%= @recording.wav_name %>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label>Watermark Id</label>
+						<input type="text" name="watermark_name" class="form-control" readonly value="<%= @recording.watermark_name %>" />
+					</div>
+				</div>
+			</div>
+					
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text" name="name" id="name" class="form-control" value="<%= @recording.name %>" />
+			</div>
+			<div class="form-group">
+				<label>Description</label>
+				<textarea name="description" id="description" class="form-control"><%= @recording.description %></textarea>
+			</div>
+			<div class="form-group">
+				<label>BPM</label>
+				<input type="text" name="bpm" id="bpm" class="form-control" value="<%= @recording.bpm %>" />
+			</div>
+			<div class="form-group">
+				<label>Length</label>
+				<input type="text" name="length" id="length" class="form-control" value="<%= @recording.length %>" />
+			</div>
+			<!-- <div class="form-group">
+				<label>Old Id</label>
+				<input type="text" name="old_id" id="old_id" class="form-control" value="<%= @recording.old_id %>" />
+			</div> -->
+			<div class="form-group">
+				<label>Recommended</label>
+				<input type="checkbox" name="recommended" id="recommended" <% if @recording.recommended %>checked<% end %> />
+			</div>
+			<div class="form-group">
+				<label>Image</label>
+				<input type="file" class="form-control" name="image" id="image" /><br />
+				<% if @recording.image %>
+				<img src="data:<%= @recording.image_type %>;base64,<%= Base64.encode64(@recording.image) %>" style="width:200px;height:auto;" />
+				<% end %>
+			</div>
+			<div class="form-group">
+				<label>License</label>
+				<select name="license_id" id="license_id">
+					<% @licenses.each do |l| %>
+					<option value="<%= l.id %>" <% if @recording.license_id == l.id %>selected<% end %>><%= l.name %></option>
+					<% end %>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Song</label>
+				<a href="/admin/songs/<%= @recording.song_id %>/edit"><%= @recording.song.name %></a>
+			</div>
+			<button type="submit" class="btn btn-default">Save</button>
+			<a href="/admin/recordings/<%= @recording.id %>/reencode_files" class="btn btn-warning">Reencode</a>
+		</form>
+	</div>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">Tags</div>
+	<div class="panel-body">
+		<form action="/admin/recordings/<%= @recording.id %>/add_tag" method="post">
+			<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+			<div class="form-group">
+				<input type="text" class="form-control" name="tag" id="tag" />
+			</div>
+			<button class="btn btn-success">Add tag</button>
+		</form>
+		<br />
+		<table class="table">
+			<% @recording.recording_tags.each_slice(3) do |slice| %>
+			<tr>
+				<% slice.each do |t| %>
+				<td><%= t.tag %></td>
+				<td>
+					<form action="/admin/recordings/<%= @recording.id %>/remove_tag" method="post">
+						<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+						<input type="hidden" name="_method" value="DELETE" />
+						<input type="hidden" name="id" value="<%= t.id %>" />
+						<button type="submit" class="btn btn-danger">delete</button>
+					</form>
+				</td>
+				<% end %>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">Libraries</div>
+	<div class="panel-body">
+		<table class="table table-striped">
+			<% @recording.recording_libraries.each do |rl| %>
+			<tr>
+				<td><%= rl.library.name %></td>
+				<td>
+					<form action="/admin/recordings/<%= @recording.id %>/remove_library" method="post">
+						<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+						<input type="hidden" name="_method" value="DELETE" />
+						<input type="hidden" name="id" value="<%= rl.id %>" />
+						<button type="submit" class="btn btn-danger">delete</button>
+					</form>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+		<br />
+		<form action="/admin/recordings/<%= @recording.id %>/add_library" method="post">
+			<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+			<div class="form-group">
+				<select name="library_id" id="library_id" class="form-control">
+					<% @libraries.each do |l| %>
+					<option value="<%= l.id %>"><%= l.name %></option>
+					<% end %>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-default">Add library</button>
+		</form>
+	</div>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">Genres</div>
+	<div class="panel-body">
+		<table class="table table-striped">
+			<% @recording.recording_genres.each do |rg| %>
+			<tr>
+				<td><%= rg.genre.name %></td>
+				<td>
+					<form action="/admin/recordings/<%= @recording.id %>/remove_genre" method="post">
+						<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+						<input type="hidden" name="_method" value="DELETE" />
+						<input type="hidden" name="id" value="<%= rg.id %>" />
+						<button type="submit" class="btn btn-danger">delete</button>
+					</form>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+		<br />
+		<form action="/admin/recordings/<%= @recording.id %>/add_genre" method="post">
+			<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+			<div class="form-group">
+				<select name="genre_id" id="genre_id" class="form-control">
+					<option value="">Choose a genre</option>
+					<% @genres.each do |g| %>
+					<option value="<%= g.id %>"><%= g.name %></option>
+					<% end %>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-default">Add genre</button>
+		</form>
+	</div>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">Artists</div>
+	<div class="panel-body">
+		<table class="table table-striped">
+			<% @recording.recording_artists.each do |ra| %>
+			<tr>
+				<td><%= ra.artist.name %></td>
+				<td><% if ra.primary %><span class="fa fa-check"></span><% end %></td>
+				<td>
+					<form action="/admin/recordings/<%= @recording.id %>/remove_artist" method="post">
+						<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+						<input type="hidden" name="_method" value="DELETE" />
+						<input type="hidden" name="id" value="<%= ra.id %>" />
+						<button type="submit" class="btn btn-danger">delete</button>
+					</form>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+		<br />
+		<form action="/admin/recordings/<%= @recording.id %>/add_artist" method="post">
+			<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+			<div class="form-group">
+				<select name="artist_id" id="artist_id" class="form-control">
+					<% @artists.each do |a| %>
+					<option value="<%= a.id %>"><%= a.name %></option>
+					<% end %>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Primary?</label>
+				<input type="checkbox" name="primary" id="primary" checked />
+			</div>
+			<button type="submit" class="btn btn-default">Add artist</button>
+		</form>
+	</div>
+</div>

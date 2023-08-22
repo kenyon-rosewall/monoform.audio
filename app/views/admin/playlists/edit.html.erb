@@ -1,0 +1,66 @@
+<div class="panel panel-info">
+	<div class="panel-heading">Info</div>
+	<div class="panel-body">
+		<form action="/admin/playlists/<%= @playlist.id %>" method="post" enctype="multipart/form-data">
+			<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+			<input type="hidden" name="_method" value="PUT" />
+			<input type="hidden" name="id" value="<%= @playlist.id %>" />
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text" name="name" id="name" class="form-control" value="<%= @playlist.name %>" />
+			</div>
+			<div class="form-group">
+				<label>Description</label>
+				<textarea name="description" id="description" class="form-control"><%= @playlist.description %></textarea>
+			</div>
+			<div class="form-group">
+				<label>Image</label>
+				<input type="file" class="form-control" name="image" id="image" /><br />
+				<% if @playlist.image %>
+				<img src="data:<%= @playlist.image_type %>;base64,<%= Base64.encode64(@playlist.image) %>" style="width:200px;height:auto;" />
+				<% end %>
+			</div>
+			<button type="submit" class="btn btn-default">Save</button>
+		</form>
+	</div>
+</div>
+
+<div class="panel panel-info">
+	<div class="panel-heading">Recordings</div>
+	<div class="panel-body">
+		<form action="/admin/playlists/<%= @playlist.id %>/add_recording" method="post">
+			<div class="col-sm-9">
+				<input type="text" name="recording" id="recording" class="form-control" />
+				<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+				<input type="hidden" name="recording_id" id="recording_id">
+				<div class="results" id="recordings-search-results"></div>
+			</div>
+			<div class="col-sm-3">
+				<button type="submit" class="btn btn-success">Add recording</button>
+			</div>
+		</form>
+		<br /><br />
+		<div class="recordings">
+			<table class="table table-striped">
+				<% @playlist.recordings.each do |r| %>
+				<tr>
+					<td><a href="/admin/recordings/<%= r.id %>/edit"><%= r.full_title %></a></td>
+					<td><a href="<%= r.watermarked_path %>" target="_blank">Listen</a></td>
+					<td><%= r.length %></td>
+					<td><%= r.bpm %></td>
+					<td>
+						<form action="/admin/playlists/<%= @playlist.id %>/remove_recording" method="post">
+							<input type="hidden" class="authenticity_token" name="authenticity_token" value="" />
+							<input type="hidden" name="_method" value="DELETE" />
+							<input type="hidden" name="recording_id" value="<%= r.id %>">
+							<button type="submit" class="btn btn-danger">delete</button>
+						</form>
+					</td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="padding"></div>

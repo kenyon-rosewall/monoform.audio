@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recording_id: MyString
+  name: MyString
+  description: MyText
+  bpm: 1
+  length: MyString
+
+two:
+  recording_id: MyString
+  name: MyString
+  description: MyText
+  bpm: 1
+  length: MyString

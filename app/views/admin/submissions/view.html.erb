@@ -1,0 +1,46 @@
+<h3>Submissions</h3>
+<table class="table table-striped">
+	<tr>
+		<td>Name</td>
+		<td><%= @submission.name %></td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td><%= @submission.email %></td>
+	</tr>
+	<tr>
+		<td>Message</td>
+		<td><%= @submission.message %></td>
+	</tr>
+	<tr>
+		<td>Artist</td>
+		<td><%= @submission.artist %></td>
+	</tr>
+	<tr>
+		<td>Sounds Like</td>
+		<td><%= @submission.sounds_like %></td>
+	</tr>
+	<tr>
+		<td>How did they hear</td>
+		<td><%= @submission.how_did_you_hear %></td>
+	</tr>
+	<tr>
+		<td>Submission Id</td>
+		<td><%= @submission.submission_id %></td>
+	</tr>
+	<tr>
+		<td>Submitted</td>
+		<td><%= @submission.created_at.strftime("%m/%d/%Y") %></td>
+	</tr>
+</table>
+
+<h3>Songs</h3>
+<table class="table table-striped">
+	<% @submission.files.each do |f| %>
+	<tr>
+		<td><%= f %></td>
+		<td><a href="/submissions/<%= @submission.submission_id %>/<%= f %>" target="_blank">listen</a></td>
+	</tr>
+	<% end %>
+</table>
+	
